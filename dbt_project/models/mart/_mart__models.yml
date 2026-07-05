@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: mart_customer_summary
+    description: "顧客セグメント別の売上サマリー（Mart 層）"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: mart_monthly_revenue
+    description: "月次売上（Mart 層）"
+    columns:
+      - name: order_month
+        tests:
+          - unique
+          - not_null

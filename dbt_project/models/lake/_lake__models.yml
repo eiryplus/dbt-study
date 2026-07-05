@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: lake_customers
+    description: "raw.customers を1:1で取り込み、カラム名を統一した Lake 層モデル"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: lake_orders
+    description: "raw.orders を1:1で取り込んだ Lake 層モデル"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: lake_payments
+    description: "raw.payments を1:1で取り込んだ Lake 層モデル"
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+          - not_null

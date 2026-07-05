@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: int_order_payments
+    description: "注文ごとに支払い金額を集計した Intermediate 層モデル"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: int_customer_orders
+    description: "顧客ごとに注文実績を集計した Intermediate 層モデル"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null

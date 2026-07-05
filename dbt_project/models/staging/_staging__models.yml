@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "氏名の前後空白除去などクレンジングを行った Staging 層モデル"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: "ステータス表記のゆれ（大文字小文字・空白）を吸収した Staging 層モデル"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["completed", "shipped", "returned", "placed"]
+
+  - name: stg_payments
+    description: "金額が0以下の異常データを除外した Staging 層モデル"
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+          - not_null

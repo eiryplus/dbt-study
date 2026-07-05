@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "seed で取り込んだ raw データ（Lake 層が参照するソース）"
+    tables:
+      - name: customers
+        identifier: raw_customers
+      - name: orders
+        identifier: raw_orders
+      - name: payments
+        identifier: raw_payments

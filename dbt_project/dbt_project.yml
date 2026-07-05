@@ -1,0 +1,36 @@
+name: "dbt_learning"
+version: "1.0.0"
+config-version: 2
+
+profile: "dbt_learning"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  dbt_learning:
+    +schema: raw
+
+models:
+  dbt_learning:
+    lake:
+      +materialized: view
+      +schema: lake
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    dwh:
+      +materialized: table
+      +schema: dwh
+    mart:
+      +materialized: table
+      +schema: mart
