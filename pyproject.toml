@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "dbt-learning"
 version = "0.1.0"
-description = "DBT learning environment (Python 3.11 + Poetry + PostgreSQL, running in Docker)"
+description = "DBT learning environment (Python 3.13 + Poetry + PostgreSQL, running in Docker)"
 authors = ["Your Name <you@example.com>"]
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.13"
 dbt-core = "^1.8"
 dbt-postgres = "^1.8"
 
@@ -14,10 +14,15 @@ dbt-postgres = "^1.8"
 flake8 = "^7.1"
 black = "^24.8"
 isort = "^5.13"
+uv = "^0.11.28"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^9.1.1"
 
 [tool.black]
 line-length = 110
-target-version = ["py311"]
+target-version = ["py313"]
 
 [tool.isort]
 profile = "black"

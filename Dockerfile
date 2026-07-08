@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 ENV POETRY_HOME=/opt/poetry \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
@@ -14,7 +14,7 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 WORKDIR /usr/app
 
 COPY pyproject.toml poetry.lock* ./
-RUN poetry install --no-root --no-ansi
+RUN poetry install --no-root --no-ansi --only main
 
 COPY . .
 
