@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  },
+  "postgres": {
+    "command": "uv",
+    "args": [
+      "run",
+      "postgres-mcp",
+      "--access-mode=unrestricted"
+    ],
+    "env": {
+      "DATABASE_URI": "postgresql://username:password@localhost:5432/dbname"
+    }
+  }
+}
