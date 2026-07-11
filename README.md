@@ -69,10 +69,16 @@ docker compose exec dbt poetry run dbt docs serve --project-dir dbt_project --po
 
 ## Lint / フォーマット（PEP8, 1行110文字）
 
+dbt本体はDockerコンテナ内で実行しますが、Lint・フォーマットはローカルPC上で実行します。
+
 ```bash
-docker compose exec dbt poetry run flake8 .
-docker compose exec dbt poetry run black --check .
-docker compose exec dbt poetry run isort --check .
+python3.13 -m venv .venv
+. .venv/bin/activate
+poetry install
+
+poetry run flake8 .
+poetry run black --check .
+poetry run isort --check .
 ```
 
 ## PostgreSQL への直接接続
