@@ -47,6 +47,7 @@ docker compose up -d
 
 ```bash
 # パッケージインストール（dbt_privacy など packages.yml に定義したパッケージを取得）
+# ※ docker compose build 時点で Dockerfile 内で自動実行され、専用の named volume に保存されるため通常は不要
 docker compose exec dbt poetry run dbt deps --project-dir dbt_project
 
 # 接続確認

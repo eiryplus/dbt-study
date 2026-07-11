@@ -20,4 +20,6 @@ COPY . .
 
 ENV DBT_PROFILES_DIR=/usr/app/dbt_project
 
+RUN poetry run dbt deps --project-dir dbt_project
+
 CMD ["sleep", "infinity"]
