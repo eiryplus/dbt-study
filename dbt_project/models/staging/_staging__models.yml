@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_customers
-    description: "氏名の前後空白除去などクレンジングを行った Staging 層モデル"
+    description: "氏名の前後空白除去などクレンジングを行い、dbt_privacy パッケージで氏名をマスキングした Staging 層モデル"
     columns:
       - name: customer_id
         tests:

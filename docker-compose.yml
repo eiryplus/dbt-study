@@ -36,9 +36,11 @@ services:
       - "8080:8080"
     volumes:
       - ./dbt_project:/usr/app/dbt_project
+      - dbt_packages:/usr/app/dbt_project/dbt_packages
     working_dir: /usr/app
     tty: true
     stdin_open: true
 
 volumes:
   pgdata:
+  dbt_packages:

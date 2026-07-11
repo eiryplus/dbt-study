@@ -1,0 +1,5 @@
+packages:
+  - name: dbt_privacy
+    package: pvcy/dbt_privacy
+    version: 0.3.1
+sha1_hash: 5b9d6cf65656bcc4cc058395526558aa6e5d368c
