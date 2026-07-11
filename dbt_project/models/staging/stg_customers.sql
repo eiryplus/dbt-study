@@ -6,6 +6,6 @@ with lake as (
 
 select
     customer_id,
-    trim(first_name) as first_name,
-    trim(last_name) as last_name
+    {{ dbt_privacy.mask("trim(first_name)") }} as first_name,
+    {{ dbt_privacy.mask("trim(last_name)") }} as last_name
 from lake

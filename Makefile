@@ -1,7 +1,10 @@
 PROJECT_DIR := dbt_project
 DBT := docker compose exec dbt poetry run dbt
 
-.PHONY: debug seed run test docs-generate docs-serve
+.PHONY: deps debug seed run test docs-generate docs-serve
+
+deps: ## パッケージインストール
+	$(DBT) deps --project-dir $(PROJECT_DIR)
 
 debug: ## 接続確認
 	$(DBT) debug --project-dir $(PROJECT_DIR)
