@@ -7,7 +7,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dbt}
       POSTGRES_DB: ${POSTGRES_DB:-dbt_learning}
     ports:
-      - "5432:5432"
+      # ホスト内ツール(psql 等)用。LAN には公開しない
+      - "127.0.0.1:5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -15,6 +16,12 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    networks:
+      default:
+      # airflow-study との連携用共有ネットワーク(docker network create data-platform)
+      data-platform:
+        aliases:
+          - dbt-postgres
 
   dbt:
     build:
@@ -44,3 +51,7 @@ services:
 volumes:
   pgdata:
   dbt_packages:
+
+networks:
+  data-platform:
+    external: true
