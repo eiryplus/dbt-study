@@ -17,6 +17,9 @@ seeds:
   dbt_learning:
     +schema: raw
 
+vars:
+  dbt_osmosis_default_path: "_{parent}__models.yml"
+
 models:
   dbt_learning:
     lake:

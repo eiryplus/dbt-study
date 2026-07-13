@@ -1,7 +1,11 @@
 PROJECT_DIR := dbt_project
 DBT := docker compose exec dbt poetry run dbt
+DBT_OSMOSIS := docker compose exec dbt poetry run dbt-osmosis
+# dbt-osmosis はプロジェクトルートを解決する際に相対パスを正規化しないため、
+# コンテナ内の絶対パスを渡す必要がある（相対パスだと出力先ディレクトリが二重になる）
+OSMOSIS_PROJECT_DIR := /usr/app/$(PROJECT_DIR)
 
-.PHONY: deps debug seed run test docs-generate docs-serve lint format
+.PHONY: deps debug seed run test docs-generate docs-serve lint format osmosis-check osmosis-refactor
 
 deps: ## パッケージインストール
 	$(DBT) deps --project-dir $(PROJECT_DIR)
@@ -32,3 +36,9 @@ lint: ## Lintチェック（ローカルPCで実行）
 format: ## フォーマット（ローカルPCで実行）
 	poetry run black .
 	poetry run isort .
+
+osmosis-check: ## メタデータYAMLとDBスキーマの差分チェック（変更が必要なら非ゼロで終了）
+	$(DBT_OSMOSIS) yaml refactor --project-dir $(OSMOSIS_PROJECT_DIR) --dry-run --check --auto-apply
+
+osmosis-refactor: ## メタデータYAML（カラム定義・description継承）をDBスキーマに同期して自動整備
+	$(DBT_OSMOSIS) yaml refactor --project-dir $(OSMOSIS_PROJECT_DIR) --auto-apply
