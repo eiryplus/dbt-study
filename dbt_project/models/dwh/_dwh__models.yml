@@ -1,21 +1,34 @@
 version: 2
-
 models:
   - name: dwh_dim_customers
-    description: "顧客ディメンション（DWH 層）"
+    description: 顧客ディメンション（DWH 層）
     columns:
       - name: customer_id
         tests:
           - unique
           - not_null
 
+        data_type: integer
+      - name: first_name
+        data_type: text
+      - name: last_name
+        data_type: text
+      - name: first_order_date
+        data_type: date
+      - name: most_recent_order_date
+        data_type: date
+      - name: number_of_orders
+        data_type: bigint
+      - name: lifetime_value
+        data_type: numeric
   - name: dwh_fct_orders
-    description: "注文ファクト（DWH 層）"
+    description: 注文ファクト（DWH 層）
     columns:
       - name: order_id
         tests:
           - unique
           - not_null
+        data_type: integer
       - name: customer_id
         tests:
           - not_null
@@ -23,3 +36,12 @@ models:
               arguments:
                 to: ref('dwh_dim_customers')
                 field: customer_id
+        data_type: integer
+      - name: order_date
+        data_type: date
+      - name: status
+        data_type: text
+      - name: amount_paid
+        data_type: numeric
+      - name: payment_count
+        data_type: bigint

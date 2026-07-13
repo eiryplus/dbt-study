@@ -1,18 +1,35 @@
 version: 2
-
 models:
   - name: mart_customer_summary
-    description: "顧客セグメント別の売上サマリー（Mart 層）"
+    description: 顧客セグメント別の売上サマリー（Mart 層）
     columns:
       - name: customer_id
         tests:
           - unique
           - not_null
 
+        data_type: integer
+      - name: customer_name
+        data_type: text
+      - name: number_of_orders
+        data_type: bigint
+      - name: lifetime_value
+        data_type: numeric
+      - name: first_order_date
+        data_type: date
+      - name: most_recent_order_date
+        data_type: date
+      - name: customer_segment
+        data_type: text
   - name: mart_monthly_revenue
-    description: "月次売上（Mart 層）"
+    description: 月次売上（Mart 層）
     columns:
       - name: order_month
         tests:
           - unique
           - not_null
+        data_type: date
+      - name: number_of_orders
+        data_type: bigint
+      - name: total_revenue
+        data_type: numeric

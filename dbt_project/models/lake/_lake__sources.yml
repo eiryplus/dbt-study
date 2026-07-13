@@ -1,13 +1,37 @@
 version: 2
-
 sources:
   - name: raw
     schema: raw
-    description: "seed で取り込んだ raw データ（Lake 層が参照するソース）"
+    description: seed で取り込んだ raw データ（Lake 層が参照するソース）
     tables:
       - name: customers
         identifier: raw_customers
+        columns:
+          - name: id
+            data_type: integer
+          - name: first_name
+            data_type: text
+          - name: last_name
+            data_type: text
       - name: orders
         identifier: raw_orders
+        columns:
+          - name: id
+            data_type: integer
+          - name: user_id
+            data_type: integer
+          - name: order_date
+            data_type: date
+          - name: status
+            data_type: text
       - name: payments
         identifier: raw_payments
+        columns:
+          - name: id
+            data_type: integer
+          - name: order_id
+            data_type: integer
+          - name: payment_method
+            data_type: text
+          - name: amount
+            data_type: integer
