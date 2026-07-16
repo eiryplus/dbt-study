@@ -21,6 +21,8 @@ vars:
   dbt_osmosis_default_path: "_{parent}__models.yml"
 
 models:
+  elementary:
+    +schema: "elementary"
   dbt_learning:
     lake:
       +materialized: view

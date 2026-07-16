@@ -2,4 +2,10 @@ packages:
   - name: dbt_privacy
     package: pvcy/dbt_privacy
     version: 0.3.1
-sha1_hash: 5b9d6cf65656bcc4cc058395526558aa6e5d368c
+  - name: elementary
+    package: elementary-data/elementary
+    version: 0.25.1
+  - name: dbt_utils
+    package: dbt-labs/dbt_utils
+    version: 1.4.1
+sha1_hash: a3b9d28670ea380ed4bf377a5d15ddbc9c3487ba
