@@ -10,3 +10,18 @@ dbt_learning:
       dbname: "{{ env_var('POSTGRES_DB', 'dbt_learning') }}"
       schema: "{{ env_var('POSTGRES_SCHEMA', 'analytics') }}"
       threads: 4
+
+# edr（elementaryのCLI）が内部で使用するプロファイル。
+# 接続先はメインプロファイルと同じDBだが、elementaryのモデル群が置かれるスキーマを指定する。
+elementary:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('POSTGRES_HOST', 'postgres') }}"
+      user: "{{ env_var('POSTGRES_USER', 'dbt') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD', 'dbt') }}"
+      port: "{{ env_var('POSTGRES_PORT', '5432') | as_number }}"
+      dbname: "{{ env_var('POSTGRES_DB', 'dbt_learning') }}"
+      schema: "elementary"
+      threads: 4

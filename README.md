@@ -52,6 +52,19 @@ make osmosis-refactor
 
 なお、PII情報であるカラムをメタデータに自動で識別・付与し下流へ伝搬する仕組みは今回のスコープ外です。
 
+## テスト結果のレポート出力（elementary）
+
+[elementary](https://github.com/elementary-data/elementary) を導入し、`dbt test` の結果をレビューで使えるHTMLレポートとして出力できるようにしています。elementaryはdbtパッケージ（`dbt_project/packages.yml`）とCLI（`edr`、`pyproject.toml`）の2つで構成され、
+テスト実行結果をDB上の専用スキーマ（`elementary`）に記録し、そこからレポートを生成します。
+
+```bash
+make test               # テスト実行（結果はelementaryパッケージのモデル経由でDBに記録される）
+make elementary-report   # レポート生成（dbt_project/elementary_report.html に出力）
+```
+
+生成された `elementary_report.html` はブラウザで直接開いて確認できます（テスト結果の一覧・成否・カバレッジなどを可視化）。
+なお、レポートをGitに登録しPull Requestのレビューに含めるところまでは今回のスコープ外のため、生成物は `.gitignore` で除外しています。
+
 ## セットアップ
 
 ```bash
